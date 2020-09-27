@@ -37,7 +37,20 @@ async function createCourse() {
 }
 
 async function getCourses() {
-    const courses = await Course.find({author: 'Mosh', isPublished: true})
+    // eq - equal
+    //ne - not equal
+    //gt - greater than
+    //gte - greater than or equal to
+    //lt less than
+    //lte less than or equal to
+    //in
+    //nin not in
+
+    const courses = await Course
+        // .find({author: 'Mosh', isPublished: true})
+        .find({price: {$gt: 10}})  //all docs where price is greater than 10
+        .find({price: {$in: [10, 15, 20]}})  //all docs where price is one of the value in the array
+        .find({price: {$gt: 10, $lt: 20}})  //all docs where price is greater than 10 and less than 20
         .limit(10)
         .sort({name: 1,})//1 means ascending order, descending -1
         .select({name: 1, tags: 1});//only return selected properties
