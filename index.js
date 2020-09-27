@@ -9,7 +9,7 @@ mongoose.connect('mongodb://localhost:27017/playground', {useNewUrlParser: true,
 const courseSchema = new mongoose.Schema({
     name: String,
     author: String,
-    tag: [String],
+    tags: [String],
     date: {
         type: Date, default: Date.now(),
         isPublished: Boolean,
@@ -24,9 +24,16 @@ const Course = mongoose.model('Course', courseSchema); //Course class defined by
 
 //create object based on above class
 
-const course = new Course({
-    name:'Node Js Course',
-    author:'Mosh',
-    tags:['node','backend']
-});
 
+async function createCourse() {
+    const course = new Course({
+        name: 'Node Js Course',
+        author: 'Mosh',
+        tags: ["node","backend"]
+    });
+    const result = await course.save();
+    console.log(result)
+}
+
+
+createCourse();
