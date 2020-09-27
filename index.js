@@ -29,11 +29,19 @@ async function createCourse() {
     const course = new Course({
         name: 'Angualar Course',
         author: 'Mosh',
-        tags: ['angular','front-end']
+        tags: ['angular', 'front-end'],
+        isPublished: Boolean
     });
     const result = await course.save();
     console.log(result)
 }
 
+async function getCourses() {
+    const courses = await Course.find({author: 'Mosh', isPublished: true})
+        .limit(10)
+        .sort({name: 1,})//1 means ascending order, descending -1
+        .select({name: 1, tags: 1});//only return selected properties
+    console.log(courses)
+}
 
-createCourse();
+getCourses();
