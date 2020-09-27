@@ -27,9 +27,9 @@ const Course = mongoose.model('Course', courseSchema); //Course class defined by
 
 async function createCourse() {
     const course = new Course({
-        name: 'Node Js Course',
+        name: 'Angualar Course',
         author: 'Mosh',
-        tags: ["node","backend"]
+        tags: ['angular','front-end']
     });
     const result = await course.save();
     console.log(result)
