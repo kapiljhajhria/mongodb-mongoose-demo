@@ -46,11 +46,11 @@ async function getCourses() {
     //in
     //nin not in
 
+
+    //logical operators or and
     const courses = await Course
-        // .find({author: 'Mosh', isPublished: true})
-        .find({price: {$gt: 10}})  //all docs where price is greater than 10
-        .find({price: {$in: [10, 15, 20]}})  //all docs where price is one of the value in the array
-        .find({price: {$gt: 10, $lt: 20}})  //all docs where price is greater than 10 and less than 20
+        .find()
+        .or([{author:'Mosh'},{isPublished:false}])//array containing multiple filters object
         .limit(10)
         .sort({name: 1,})//1 means ascending order, descending -1
         .select({name: 1, tags: 1});//only return selected properties
