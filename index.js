@@ -15,3 +15,18 @@ const courseSchema = new mongoose.Schema({
         isPublished: Boolean,
     }
 });
+
+
+//Class Course and use instance of that class to store data
+
+const Course = mongoose.model('Course', courseSchema); //Course class defined by using mongoose method
+
+
+//create object based on above class
+
+const course = new Course({
+    name:'Node Js Course',
+    author:'Mosh',
+    tags:['node','backend']
+});
+
